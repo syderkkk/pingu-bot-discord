@@ -18,7 +18,8 @@
   "homepage": "https://github.com/syderkkk/pingu-bot-discord#readme",
   "dependencies": {
     "discord.js": "^14.21.0",
-    "dotenv": "^17.2.1"
+    "dotenv": "^17.2.1",
+    "zod": "^4.0.15"
   },
   "devDependencies": {
     "@types/dotenv": "^6.1.1",

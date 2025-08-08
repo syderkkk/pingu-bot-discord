@@ -1,4 +1,5 @@
-import { Client, GatewayIntentBits } from "discord.js";
+import { Client, Events, GatewayIntentBits } from "discord.js";
+import { onReady } from "./events/onReady";
 
 export class BotManager {
     private readonly client: Client;
@@ -12,10 +13,15 @@ export class BotManager {
                 GatewayIntentBits.GuildMembers
             ]
         });
+
+        this.setupEvents();
     }
 
     public async start(): Promise<void> {
         await this.client.login(this.token);
-        console.log("Bot is now online!");
+    }
+
+    private setupEvents(): void {
+        this.client.once(Events.ClientReady, () => onReady(this.client));
     }
 }
