@@ -1,0 +1,30 @@
+{
+  "name": "pingu-bot-discord",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/Main.ts",
+  "scripts": {
+    "dev": "nodemon --exec ts-node src/Main.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/syderkkk/pingu-bot-discord.git"
+  },
+  "author": "Italo Mendoza",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/syderkkk/pingu-bot-discord/issues"
+  },
+  "homepage": "https://github.com/syderkkk/pingu-bot-discord#readme",
+  "dependencies": {
+    "discord.js": "^14.21.0",
+    "dotenv": "^17.2.1"
+  },
+  "devDependencies": {
+    "@types/dotenv": "^6.1.1",
+    "@types/node": "^24.2.0",
+    "nodemon": "^3.1.10",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.2"
+  }
+}
