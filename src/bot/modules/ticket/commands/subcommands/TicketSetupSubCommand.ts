@@ -98,7 +98,6 @@ export class TicketSetupSubCommand extends BaseTicketSubCommand {
             } else {
                 await interaction.reply({
                     content: `❌ Error al configurar el sistema de tickets: ${errorMessage}`,
-                    /* ephemeral: true */
                     flags: MessageFlags.Ephemeral
                 });
             }

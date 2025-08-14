@@ -2,6 +2,8 @@ import { ChannelType, ChatInputCommandInteraction, SlashCommandBuilder } from "d
 import { BaseCommand } from "../../../core/BaseCommand";
 import { TicketSetupSubCommand } from "./subcommands/TicketSetupSubCommand";
 import { TicketManager } from "../TicketManager";
+import { TicketCloseSubCommand } from "./subcommands/TicketCloseSubCommand";
+import { TicketOpenSubCommand } from "./subcommands/TicketOpenSubCommand";
 
 
 export class TicketCommand extends BaseCommand {
@@ -62,10 +64,14 @@ export class TicketCommand extends BaseCommand {
         );
 
     private setupSubCommand: TicketSetupSubCommand;
+    private closeSubCommand: TicketCloseSubCommand;
+    private openSubCommand: TicketOpenSubCommand;
 
     constructor(ticketManager: TicketManager) {
         super();
-        this.setupSubCommand = new TicketSetupSubCommand(ticketManager);;
+        this.setupSubCommand = new TicketSetupSubCommand(ticketManager);
+        this.closeSubCommand = new TicketCloseSubCommand(ticketManager);
+        this.openSubCommand = new TicketOpenSubCommand(ticketManager);
     }
 
     public async execute(interaction: ChatInputCommandInteraction): Promise<void> {
@@ -84,8 +90,10 @@ export class TicketCommand extends BaseCommand {
                 await this.setupSubCommand.execute(interaction);
                 break;
             case 'close':
+                await this.closeSubCommand.execute(interaction);
                 break;
             case 'open':
+                await this.openSubCommand.execute(interaction);
                 break;
             default:
                 await interaction.reply({
