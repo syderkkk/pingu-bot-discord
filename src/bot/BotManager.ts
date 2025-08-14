@@ -37,7 +37,7 @@ export class BotManager {
 
     private setupEvents(): void {
         this.client.once(Events.ClientReady, () => onReady(this.client));
-        this.client.once(Events.InteractionCreate, (interaction) => onInteractionCreate(interaction, this.commandManager));
+        this.client.on(Events.InteractionCreate, (interaction) => onInteractionCreate(interaction, this.commandManager, this.ticketManager));
     }
 
     public setupCommands(): void {

@@ -6,6 +6,7 @@ import { TicketManager } from "../modules/ticket/TicketManager";
 export async function onInteractionCreate(
     interaction: Interaction,
     commandManager: CommandManager,
+    ticketManager: TicketManager
 ): Promise<void> {
     try {
         if (interaction.isChatInputCommand()) {
@@ -19,6 +20,7 @@ export async function onInteractionCreate(
             console.log(`[onInteractionCreate] Handling button: ${interaction.customId}`);
             let handled = false;
 
+            handled = await ticketManager.handleButtonInteraction(interaction);
 
             if (!handled) {
                 console.warn(`[Guild: ${interaction.guild?.id}] Unhandled button interaction: ${interaction.customId}`);
@@ -43,7 +45,5 @@ export async function onInteractionCreate(
                 console.error(`[Guild: ${interaction.guild?.id}] Error sending error reply:`, replyError);
             }
         }
-
-
     }
 }

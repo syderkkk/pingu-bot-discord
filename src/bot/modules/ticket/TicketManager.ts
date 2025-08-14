@@ -1,14 +1,21 @@
-import { Guild, PermissionFlagsBits, TextChannel } from "discord.js";
+import { ButtonInteraction, Guild, PermissionFlagsBits, TextChannel } from "discord.js";
 import { TicketSettings } from "./models/TicketSettings";
 import { TicketService } from "./services/TicketService";
 import { TicketChannel } from "./models/TicketChannel";
 import { TicketType } from "./types/TicketType";
+import { TicketButtonHandler } from "./events/TicketButtonHandler";
 
 export class TicketManager {
     private ticketService: TicketService;
+    private buttonHandler: TicketButtonHandler;
 
     constructor() {
         this.ticketService = new TicketService();
+        this.buttonHandler = new TicketButtonHandler(this);
+    }
+
+    public async handleButtonInteraction(interaction: ButtonInteraction): Promise<boolean> {
+        return this.buttonHandler.handleButtonInteraction(interaction);
     }
 
     public async setupTicketSystem(
